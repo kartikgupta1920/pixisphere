@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pixisphere Frontend Assignment
 
-## Getting Started
+A photographer listing and profile platform with filters, search, infinite scroll, and responsive UI.  
+Built with **Next.js 13+ (App Directory)**, **React**, **Tailwind CSS**, and **Zustand** for state management.
 
-First, run the development server:
+---
+
+## ✅ Features
+
+- **Category Listing Page**
+  - Photographer cards with name, image, price, rating, and tags
+  - Filters: Price range slider, rating slider, style checkboxes, city dropdown
+  - Sorting: Price low-to-high, rating high-to-low, recently added
+  - Debounced search by name/location/tag
+  - Infinite scroll/load more button
+  - Fully responsive layout (desktop + mobile)
+
+- **Photographer Profile Page**
+  - Photographer details: bio, price, tags, gallery carousel
+  - Reviews section with rating, comments, and dates
+  - Send Inquiry button (modal form)
+
+- **Other**
+  - Skeleton loaders while fetching
+  - Zustand for global filter state management
+
+---
+
+## 📁 Folder Structure Overview
+
+pixisphere/
+├── public/
+├── src/
+│ ├── app/
+│ │ ├── category/
+│ │ │ └── [city]/
+│ │ │ └── page.js
+│ │ ├── photographer/
+│ │ │ └── [id]/
+│ │ │ └── page.js
+│ │ ├── layout.js
+│ │ └── page.js
+│ ├── components/
+│ │ ├── Filters.jsx
+│ │ ├── Gallery.jsx
+│ │ ├── PhotographerCard.jsx
+│ │ ├── ReviewList.jsx
+│ │ ├── SearchBar.jsx
+│ ├── lib/
+│ │ └── api.js
+│ ├── store/
+│ │ └── photographerStore.js
+│ ├── styles/
+│ │ └── globals.css
+│ └── db.json
+├── tailwind.config.js
+├── postcss.config.js
+├── package.json
+├── README.md
+
+
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Install Dependencies
 
 ```bash
+npm install
+
+
+2️⃣ Install JSON Server Globally
+bash
+Copy
+Edit
+npm install -g json-server
+3️⃣ Start Mock API Server
+bash
+Copy
+Edit
+json-server --watch db.json --port 3001
+4️⃣ Start Development Server
+bash
+Copy
+Edit
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔄 Filtering & Debounce Notes
+Zustand manages global filter state across components.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Lodash.debounce is used in the search bar to prevent rapid API/filter updates.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+rc-slider powers price and rating sliders.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Filters are applied locally by filtering the fetched array from the mock API.
 
-## Learn More
+🚀 Live Demo
+https://pixisphere-ten.vercel.app/category/Bengaluru
 
-To learn more about Next.js, take a look at the following resources:
+✅ Dependencies
+React 18+
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Next.js 13+ (App Directory)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tailwind CSS
 
-## Deploy on Vercel
+rc-slider
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+lodash.debounce
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+zustand
+
+json-server (for local mock API)
+
